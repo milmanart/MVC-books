@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Our Book Application</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Пример подключения стилей -->
+</head>
+<body>
+<header>
+    <h1>Welcome to Our Book Management System</h1>
+</header>
+
+<nav>
+    <!-- Ссылка для просмотра книг показывается только аутентифицированным пользователям -->
+    <% if (loggedIn) { %>
+        <a href="/books"><button>View Books</button></a>
+        <a href="/logout"><button>Log Out</button></a>
+    <% } else { %>
+        <a href="/login"><button>Log In</button></a>
+    <% } %>
+</nav>
+
+<main>
+    <p>Manage your book collection easily and efficiently.</p>
+</main>
+
+<footer>
+    <p>Thank you for visiting our site!</p>
+</footer>
+</body>
+</html>
