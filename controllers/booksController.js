@@ -18,11 +18,22 @@ exports.postAddBook = (req, res) => {
         title: req.body.title,
         author: req.body.author,
         year: req.body.year,
+        genre: req.body.genre,
         readed: false
     };
     Book.addBook(newBook, err => {
         if (err) {
             return res.status(500).send('Error adding book');
+        }
+        res.redirect('/books');
+    });
+};
+
+exports.deleteBook = (req, res) => {
+    const bookId = req.params.id;
+    Book.deleteBook(bookId, err => {
+        if (err) {
+            return res.status(500).send('Error deleting book');
         }
         res.redirect('/books');
     });

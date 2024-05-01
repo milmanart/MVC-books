@@ -6,24 +6,19 @@
 </head>
 <body>
 <h1>Book List</h1>
-<% if (books.length > 0) { %>
-    <ul>
-        <% books.forEach(function(book) { %>
-            <li>
-                <%= book.title %> by <%= book.author %>, published in <%= book.year %>
-                <!-- Чекбокс теперь на той же строке, что и информация о книге -->
-                <form action="/books/readed/<%= book.id %>" method="POST" style="display: inline;">
-                    <input type="checkbox" name="readed" <%= book.readed ? 'checked' : '' %> onchange="this.form.submit()">
-                </form>
-            </li>
-        <% }); %>
-    </ul>
-<% } else { %>
-    <p>No books found.</p>
-<% } %>
-<form action="/logout" method="get">
-    <button type="submit">Log Out</button>
-</form>
-<a href="/books/add"><button>Add Book</button></a>
+<ul>
+    <% books.forEach(function(book) { %>
+        <li>
+            <%= book.title %> by <%= book.author %>, published in <%= book.year %>, Genre: <%= book.genre %>
+            <form action="/books/readed/<%= book.id %>" method="POST" style="display: inline;">
+                <input type="checkbox" name="readed" onchange="this.form.submit()" <%= book.readed ? 'checked' : '' %>>
+            </form>
+            <form action="/books/delete/<%= book.id %>" method="POST" style="display: inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    <% }); %>
+</ul>
+<a href="/books/add"><button>Add New Book</button></a>
 </body>
 </html>
