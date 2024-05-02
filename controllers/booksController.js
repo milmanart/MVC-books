@@ -48,3 +48,36 @@ exports.postToggleReaded = (req, res) => {
         res.redirect('/books');
     });
 };
+
+exports.getEditBook = (req, res) => {
+    const bookId = req.params.id;
+    Book.getAllBooks((books, err) => {
+        if (err) {
+            return res.status(500).send('Error loading book');
+        }
+        const book = books.find(b => b.id === parseInt(bookId));
+        if (book) {
+            res.render('edit-book', { book });
+        } else {
+            res.send('Book not found');
+        }
+    });
+};
+
+exports.postEditBook = (req, res) => {
+    const bookId = req.params.id;
+    const updatedBook = {
+        id: parseInt(bookId),
+        title: req.body.title,
+        author: req.body.author,
+        year: req.body.year,
+        genre: req.body.genre,
+        readed: req.body.readed === 'on' ? true : false
+    };
+    Book.updateBook(updatedBook, err => {
+        if (err) {
+            return res.status(500).send('Error updating book');
+        }
+        res.redirect('/books');
+    });
+};

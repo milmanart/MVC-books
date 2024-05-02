@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Book</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Edit Book</h1>
+<form action="/books/edit/<%= book.id %>" method="POST">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="<%= book.title %>" required><br>
+    <label for="author">Author:</label>
+    <input type="text" id="author" name="author" value="<%= book.author %>" required><br>
+    <label for="year">Year:</label>
+    <input type="number" id="year" name="year" value="<%= book.year %>" required><br>
+    <label for="genre">Genre:</label>
+    <select id="genre" name="genre" required>
+        <option value="Fiction" <%= book.genre === 'Fiction' ? 'selected' : '' %>>Fiction</option>
+        <option value="Non-Fiction" <%= book.genre === 'Non-Fiction' ? 'selected' : '' %>>Non-Fiction</option>
+        <option value="Fantasy" <%= book.genre === 'Fantasy' ? 'selected' : '' %>>Fantasy</option>
+        <option value="Mystery" <%= book.genre === 'Mystery' ? 'selected' : '' %>>Mystery</option>
+        <option value="Thriller" <%= book.genre === 'Thriller' ? 'selected' : '' %>>Thriller</option>
+        <option value="Romance" <%= book.genre === 'Romance' ? 'selected' : '' %>>Romance</option>
+        <option value="Western" <%= book.genre === 'Western' ? 'selected' : '' %>>Western</option>
+        <option value="Dystopian" <%= book.genre === 'Dystopian' ? 'selected' : '' %>>Dystopian</option>
+        <option value="Science Fiction" <%= book.genre === 'Science Fiction' ? 'selected' : '' %>>Science Fiction</option>
+        <option value="Biography" <%= book.genre === 'Biography' ? 'selected' : '' %>>Biography</option>
+        <option value="Horror" <%= book.genre === 'Horror' ? 'selected' : '' %>>Horror</option>
+        <option value="Historical Fiction" <%= book.genre === 'Historical Fiction' ? 'selected' : '' %>>Historical Fiction</option>
+    </select><br>
+    <input type="checkbox" id="readed" name="readed" <%= book.readed ? 'checked' : '' %>>
+    <label for="readed">Read</label><br>
+    <button type="submit">Save Changes</button>
+</form>
+</body>
+</html>

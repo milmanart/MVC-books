@@ -3,22 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Book List</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 <h1>Book List</h1>
-<ul>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Year of Published</th>
+        <th>Genre</th>
+        <th>Readed</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
     <% books.forEach(function(book) { %>
-        <li>
-            <%= book.title %> by <%= book.author %>, published in <%= book.year %>, Genre: <%= book.genre %>
-            <form action="/books/readed/<%= book.id %>" method="POST" style="display: inline;">
-                <input type="checkbox" name="readed" onchange="this.form.submit()" <%= book.readed ? 'checked' : '' %>>
-            </form>
-            <form action="/books/delete/<%= book.id %>" method="POST" style="display: inline;">
-                <button type="submit">Delete</button>
-            </form>
-        </li>
+        <tr>
+            <td><%= book.id %></td>
+            <td><%= book.title %></td>
+            <td><%= book.author %></td>
+            <td><%= book.year %></td>
+            <td><%= book.genre %></td>
+            <td>
+                <form action="/books/readed/<%= book.id %>" method="POST">
+                    <input type="checkbox" name="readed" onchange="this.form.submit()" <%= book.readed ? 'checked' : '' %>>
+                </form>
+            </td>
+            <td>
+                <form action="/books/delete/<%= book.id %>" method="POST" style="display: inline;">
+                    <button type="submit">Delete</button>
+                </form>
+                <a href="/books/edit/<%= book.id %>" style="display: inline;"><button>Edit</button></a>
+            </td>
+        </tr>
     <% }); %>
-</ul>
+    </tbody>
+</table>
 <a href="/books/add"><button>Add New Book</button></a>
 </body>
 </html>
