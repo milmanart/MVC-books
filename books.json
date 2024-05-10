@@ -1,18 +1,20 @@
 [
   {
-    "title": "qwe",
-    "author": "saf",
-    "year": "123",
-    "genre": "Fantasy",
-    "readed": true,
-    "id": 1
+    "title": "ASds",
+    "author": "ADssa",
+    "year": "1245",
+    "genre": "Biography",
+    "readed": false,
+    "id": 2,
+    "rating": 6
   },
   {
-    "title": "wqrqwrr",
-    "author": "safdsvf",
-    "year": "124321",
+    "title": "poops",
+    "author": "Mops",
+    "year": "1998",
     "genre": "Historical Fiction",
+    "rating": 10,
     "readed": false,
-    "id": 2
+    "id": 3
   }
 ]

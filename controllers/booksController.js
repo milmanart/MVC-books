@@ -19,6 +19,7 @@ exports.postAddBook = (req, res) => {
         author: req.body.author,
         year: req.body.year,
         genre: req.body.genre,
+        rating: parseInt(req.body.rating),
         readed: false
     };
     Book.addBook(newBook, err => {
@@ -72,6 +73,7 @@ exports.postEditBook = (req, res) => {
         author: req.body.author,
         year: req.body.year,
         genre: req.body.genre,
+        rating: parseInt(req.body.rating),
         readed: req.body.readed === 'on' ? true : false
     };
     Book.updateBook(updatedBook, err => {

@@ -30,16 +30,17 @@ app.use(session({
 // Главная страница
 app.get('/', (req, res) => {
     if (req.session.user) {
-        res.redirect('/books');  // Перенаправление авторизованных пользователей на страницу с книгами
+        res.render('index', { loggedIn: true });  // Показать страницу с возможностью выхода
     } else {
         res.render('index', { loggedIn: false });  // Показать страницу входа для неавторизованных пользователей
     }
 });
 
+
 // Маршрут для входа в систему
 app.get('/login', (req, res) => {
     req.session.user = { id: 1, username: 'defaultUser' }; // Установка сессии пользователя
-    res.redirect('/books');  // Перенаправление на страницу с книгами
+    res.redirect('/');  // Перенаправление на страницу с книгами
 });
 
 // Маршрут для выхода из системы

@@ -2,16 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to Our Book Application</title>
-    <link rel="stylesheet" href="/css/style.css"> <!-- Пример подключения стилей -->
+    <title>Bookerya</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Убедитесь, что путь корректен -->
 </head>
 <body>
 <header>
-    <h1>Welcome to Our Book Management System</h1>
+    <h1>Welcome to Bookerya</h1>
 </header>
 
 <nav>
-    <!-- Ссылка для просмотра книг показывается только аутентифицированным пользователям -->
+    <!-- Предупреждение для незалогиненных пользователей -->
+    <% if (!loggedIn) { %>
+        <p>You have to be logged in to access your books.</p>
+    <% } %>
+
+    <!-- Условные кнопки входа и просмотра книг -->
     <% if (loggedIn) { %>
         <a href="/books"><button>View Books</button></a>
         <a href="/logout"><button>Log Out</button></a>
@@ -21,7 +26,7 @@
 </nav>
 
 <main>
-    <p>Manage your book collection easily and efficiently.</p>
+    <p>Here you can manage your book list</p>
 </main>
 
 <footer>

@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<h1>Book List</h1>
+<header>
+    <h1>Book List</h1>
+</header>
 <table>
     <thead>
     <tr>
@@ -15,6 +17,7 @@
         <th>Author</th>
         <th>Year of Published</th>
         <th>Genre</th>
+        <th>Rating</th>
         <th>Readed</th>
         <th>Actions</th>
     </tr>
@@ -27,16 +30,17 @@
             <td><%= book.author %></td>
             <td><%= book.year %></td>
             <td><%= book.genre %></td>
+            <td><%= book.rating %></td>
             <td>
                 <form action="/books/readed/<%= book.id %>" method="POST">
                     <input type="checkbox" name="readed" onchange="this.form.submit()" <%= book.readed ? 'checked' : '' %>>
                 </form>
             </td>
             <td>
+                <a href="/books/edit/<%= book.id %>" style="display: inline;"><button>Edit</button></a>
                 <form action="/books/delete/<%= book.id %>" method="POST" style="display: inline;">
                     <button type="submit">Delete</button>
                 </form>
-                <a href="/books/edit/<%= book.id %>" style="display: inline;"><button>Edit</button></a>
             </td>
         </tr>
     <% }); %>

@@ -29,8 +29,14 @@
         <option value="Horror" <%= book.genre === 'Horror' ? 'selected' : '' %>>Horror</option>
         <option value="Historical Fiction" <%= book.genre === 'Historical Fiction' ? 'selected' : '' %>>Historical Fiction</option>
     </select><br>
-    <input type="checkbox" id="readed" name="readed" <%= book.readed ? 'checked' : '' %>>
-    <label for="readed">Read</label><br>
+    <label for="rating">Rating:</label>
+    <select id="rating" name="rating" required>
+        <% for(let i = 0; i <= 10; i++) { %>
+            <option value="<%= i %>" <%= book.rating == i ? 'selected' : '' %>><%= i %></option>
+        <% } %>
+    </select><br>
+    <label for="readed">Read:</label>
+    <input type="checkbox" id="readed" name="readed" <%= book.readed ? 'checked' : '' %>> Read<br>
     <button type="submit">Save Changes</button>
 </form>
 </body>
