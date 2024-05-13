@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Bookerya</title>
-    <link rel="stylesheet" href="/css/styles.css"> <!-- Убедитесь, что путь корректен -->
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 <header>
@@ -11,12 +11,10 @@
 </header>
 
 <nav>
-    <!-- Предупреждение для незалогиненных пользователей -->
     <% if (!loggedIn) { %>
         <p>You have to be logged in to access your books.</p>
     <% } %>
 
-    <!-- Условные кнопки входа и просмотра книг -->
     <% if (loggedIn) { %>
         <a href="/books"><button>View Books</button></a>
         <a href="/logout"><button>Log Out</button></a>

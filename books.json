@@ -1,19 +1,28 @@
 [
   {
-    "title": "ASds",
-    "author": "ADssa",
-    "year": "1245",
-    "genre": "Biography",
-    "readed": false,
-    "id": 2,
-    "rating": 6
+    "title": "1984",
+    "author": "George Orwell",
+    "year": "1949",
+    "genre": "Dystopian",
+    "rating": 9,
+    "readed": true,
+    "id": 1
   },
   {
-    "title": "poops",
-    "author": "Mops",
-    "year": "1998",
-    "genre": "Historical Fiction",
-    "rating": 10,
+    "title": "Harry Potter and the Philosopher's Stone",
+    "author": "J.K. Rowling",
+    "year": "1997",
+    "genre": "Fantasy",
+    "rating": 8,
+    "readed": true,
+    "id": 2
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "year": "1960",
+    "genre": "Thriller",
+    "rating": 0,
     "readed": false,
     "id": 3
   }

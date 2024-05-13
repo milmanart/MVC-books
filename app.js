@@ -2,67 +2,57 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
-const bookRoutes = require('./routes/bookRoutes'); // Убедитесь, что этот файл правильно подключает ваши роуты книг
-const isAuthenticated = require('./middleware/auth'); // Мидлвар для проверки аутентификации
+const bookRoutes = require('./routes/bookRoutes');
+const isAuthenticated = require('./middleware/auth');
 
 const app = express();
 
-// Настраиваем парсер для данных форм
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
-// Настройка движка шаблонов EJS
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Настройка сессий
 app.use(session({
-    secret: 'your_secret_key',  // Секретный ключ для подписи сессии
-    resave: false,              // Не сохранять сессию заново, если она не изменялась
-    saveUninitialized: false,   // Не сохранять новые сессии, если они не изменялись
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: false,
     cookie: {
-        secure: false,          // Для работы через HTTPS установите `true`
-        httpOnly: true,         // Запрещает доступ к куки через JavaScript на клиенте
-        maxAge: 7 * 24 * 60 * 60 * 1000 // Установка максимального возраста куки на одну неделю
+        secure: false,
+        httpOnly: true,
+        maxAge: 7 * 24 * 60 * 60 * 1000
     }
 }));
 
-// Главная страница
 app.get('/', (req, res) => {
     if (req.session.user) {
-        res.render('index', { loggedIn: true });  // Показать страницу с возможностью выхода
+        res.render('index', { loggedIn: true });
     } else {
-        res.render('index', { loggedIn: false });  // Показать страницу входа для неавторизованных пользователей
+        res.render('index', { loggedIn: false });
     }
 });
 
-
-// Маршрут для входа в систему
 app.get('/login', (req, res) => {
-    req.session.user = { id: 1, username: 'defaultUser' }; // Установка сессии пользователя
-    res.redirect('/');  // Перенаправление на страницу с книгами
+    req.session.user = { id: 1, username: 'defaultUser' };
+    res.redirect('/');
 });
 
-// Маршрут для выхода из системы
 app.get('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {
             console.error("Failed to logout:", err);
             return res.status(500).send('Failed to logout');
         }
-        res.redirect('/');  // Перенаправление на главную страницу
+        res.redirect('/');
     });
 });
 
-// Страница ошибки авторизации
 app.get('/not-authorize', (req, res) => {
-    res.render('not-authorized');  // Показать страницу "Не авторизован"
+    res.render('not-authorized');
 });
 
-// Защищенный маршрут для страницы книг
 app.use('/books', isAuthenticated, bookRoutes);
 
-// Запуск сервера
 app.listen(3000, () => {
     console.log('Server is running on http://localhost:3000');
 });
